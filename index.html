@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rohan Sharma Sitoula - Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            loadSection('about');
+        });
+
+        function sendWhatsAppMessage() {
+            var message = encodeURIComponent(document.getElementById('message').value);
+            var whatsappUrl = `https://wa.me/917866857257?text=${message}`;
+            if (message) {
+                window.open(whatsappUrl, '_blank');
+            } else {
+                alert('Please enter a message to send.');
+            }
+        }
+    </script>
+</head>
+<body class="bg-gray-900 text-gray-200 font-sans overflow-x-hidden">
+<div class="flex h-screen">
+    <nav class="w-50 bg-gray-800 p-4">
+        <h1 class="text-2xl font-bold text-orange-500 mb-6 hidden sm:block">Rohan Sharma Sitoula</h1>
+        <ul class="space-y-4">
+            <li>
+                <button class="nav-btn flex items-center" data-section="about">
+                    <span class="icon-about block text-orange-500 mr-2">👤</span>
+                    <span class="hidden sm:block">About Me</span>
+                </button>
+            </li>
+            <li>
+                <button class="nav-btn flex items-center" data-section="skills">
+                    <span class="icon-skills block text-orange-500 mr-2">🛠</span>
+                    <span class="hidden sm:block">Skills</span>
+                </button>
+            </li>
+            <li>
+                <button class="nav-btn flex items-center" data-section="experience">
+                    <span class="icon-experience block text-orange-500 mr-2">💼</span>
+                    <span class="hidden sm:block">Experience</span>
+                </button>
+            </li>
+            <li>
+                <button class="nav-btn flex items-center" data-section="education">
+                    <span class="icon-education block text-orange-500 mr-2">🎓</span>
+                    <span class="hidden sm:block">Education</span>
+                </button>
+            </li>
+            <li>
+                <button class="nav-btn flex items-center" data-section="contact">
+                    <span class="icon-contact block text-orange-500 mr-2">📬</span>
+                    <span class="hidden sm:block">Contact</span>
+                </button>
+            </li>
+        </ul>
+    </nav>
+
+    <div class="flex-1 p-6 overflow-x-scroll">
+        <div id="input-area" class="mb-4">
+            <div class="bg-gray-800 p-4 rounded shadow-md flex items-center flex-wrap">
+                <div class="text-orange-500 font-mono mr-4 flex-shrink-0">GET</div>
+                <div id="url" class="font-mono text-gray-400 flex-grow overflow-hidden whitespace-nowrap text-ellipsis">
+                </div>
+                <button id="send-btn" class="bg-orange-600 text-white py-2 px-4 rounded hover:bg-orange-500 flex-shrink-0 mx-auto sm:ml-4 sm:mt-0 mt-4 w-full sm:w-auto text-center">
+                    Send
+                </button>
+            </div>
+        </div>
+
+        <div id="loader" class="hidden text-center">
+            <p class="mt-4 text-gray-400">Loading...</p>
+        </div>
+
+        <div id="content" class="p-4 bg-gray-800 rounded shadow-md">
+
+        </div>
+    </div>
+</div>
+
+<script>
+    const urlElement = document.getElementById("url");
+    const loader = document.getElementById("loader");
+    const content = document.getElementById("content");
+    const sendButton = document.getElementById("send-btn");
+
+    document.querySelectorAll(".nav-btn").forEach(button => {
+        button.addEventListener("click", () => {
+            const section = button.getAttribute("data-section");
+            loadSection(section);
+        });
+    });
+
+    const loadSection = section => {
+        const url = `https://rohansharmasitoula.me/${section}`;
+        urlElement.textContent = "";
+        loader.classList.add("hidden");
+        content.classList.add("hidden");
+
+        typeURL(url, () => {
+            sendButton.onclick = () => {
+                sendButton.classList.add("bg-orange-700");
+                loader.classList.remove("hidden");
+
+                setTimeout(() => {
+                    fetch(`${section}.html`)
+                        .then(response => response.text())
+                        .then(html => {
+                            loader.classList.add("hidden");
+                            content.innerHTML = html;
+                            content.classList.remove("hidden");
+                            sendButton.classList.remove("bg-orange-700");
+                        });
+                }, 500);
+
+            };
+            setTimeout(() => {
+                sendButton.click();
+            }, 500);
+        });
+    };
+
+    const typeURL = (url, callback) => {
+        let i = 0;
+        const interval = setInterval(() => {
+            if (i < url.length) {
+                urlElement.textContent += url[i];
+                i++;
+            } else {
+                clearInterval(interval);
+                callback();
+            }
+        }, 20);
+    };
+</script>
+</body>
+</html>

@@ -1,0 +1,25 @@
+/* Loader Styles */
+.loader {
+    border-width: 4px;
+}
+
+/* Button Styles */
+.nav-btn {
+    display: block;
+    width: 100%;
+    padding: 0.75rem;
+    text-align: left;
+    background: transparent;
+    color: #fff;
+    font-size: 1rem;
+    font-weight: 500;
+    border: 2px solid transparent;
+    border-radius: 0.375rem;
+    transition: all 0.3s ease-in-out;
+}
+
+.nav-btn:hover {
+    background-color: #2d3748;
+    color: #d38568;
+    border-color: #d38568;
+}
