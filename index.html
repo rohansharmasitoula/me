@@ -7,6 +7,32 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+    <style>
+        @media (max-width: 640px) {
+            .nav-btn .sm:block {
+                display: none;
+            }
+
+            .nav-btn span.icon {
+                display: block;
+            }
+
+            nav {
+                width: 100%;
+                height: auto;
+                flex-wrap: wrap;
+            }
+
+            .nav-btn {
+                flex: 1 1 20%;
+                justify-content: center;
+            }
+
+            .nav-btn {
+                padding: 12px;
+            }
+        }
+    </style>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             loadSection('about');
@@ -24,43 +50,44 @@
     </script>
 </head>
 <body class="bg-gray-900 text-gray-200 font-sans overflow-x-hidden">
-<div class="flex h-screen">
-    <nav class="w-50 bg-gray-800 p-4">
-        <h1 class="text-2xl font-bold text-orange-500 mb-6 hidden sm:block">Rohan Sharma Sitoula</h1>
-        <ul class="space-y-4">
+<div class="flex h-screen flex-col sm:flex-row">
+    <nav class="bg-gray-800 p-4 flex justify-around">
+        <ul class="flex w-full sm:space-x-0 space-x-4 lg:flex-col lg:space-x-0">
+            <li class="block hidden sm:block">
+                <h1 class="text-orange-500 text-2xl font-bold">Rohan Sharma Sitoula</h1>
+            </li>
             <li>
-                <button class="nav-btn flex items-center" data-section="about">
-                    <span class="icon-about block text-orange-500 mr-2">👤</span>
-                    <span class="hidden sm:block">About Me</span>
+                <button class="nav-btn flex items-center justify-center" data-section="about">
+                    <span class="icon block text-orange-500 text-2xl mr-2">👤</span>
+                    <span class="icon-about block hidden sm:block">About</span>
                 </button>
             </li>
             <li>
-                <button class="nav-btn flex items-center" data-section="skills">
-                    <span class="icon-skills block text-orange-500 mr-2">🛠</span>
-                    <span class="hidden sm:block">Skills</span>
+                <button class="nav-btn flex items-center justify-center" data-section="skills">
+                    <span class="icon block text-orange-500 text-2xl mr-2">🛠</span>
+                    <span class="icon-skills block hidden sm:block">Skills</span>
                 </button>
             </li>
             <li>
-                <button class="nav-btn flex items-center" data-section="experience">
-                    <span class="icon-experience block text-orange-500 mr-2">💼</span>
-                    <span class="hidden sm:block">Experience</span>
+                <button class="nav-btn flex items-center justify-center" data-section="experience">
+                    <span class="icon block text-orange-500 text-2xl mr-2">💼</span>
+                    <span class="icon-experience block hidden sm:block">Experience</span>
                 </button>
             </li>
             <li>
-                <button class="nav-btn flex items-center" data-section="education">
-                    <span class="icon-education block text-orange-500 mr-2">🎓</span>
-                    <span class="hidden sm:block">Education</span>
+                <button class="nav-btn flex items-center justify-center" data-section="education">
+                    <span class="icon block text-orange-500 text-2xl mr-2">🎓</span>
+                    <span class="icon-education block hidden sm:block">Education</span>
                 </button>
             </li>
             <li>
-                <button class="nav-btn flex items-center" data-section="contact">
-                    <span class="icon-contact block text-orange-500 mr-2">📬</span>
-                    <span class="hidden sm:block">Contact</span>
+                <button class="nav-btn flex items-center justify-center" data-section="contact">
+                    <span class="icon block text-orange-500 text-2xl mr-2">📬</span>
+                    <span class="icon-contact block hidden sm:block">Contact</span>
                 </button>
             </li>
         </ul>
     </nav>
-
     <div class="flex-1 p-6 overflow-x-scroll">
         <div id="input-area" class="mb-4">
             <div class="bg-gray-800 p-4 rounded shadow-md flex items-center flex-wrap">
